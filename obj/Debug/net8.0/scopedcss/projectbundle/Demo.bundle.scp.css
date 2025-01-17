@@ -1,0 +1,49 @@
+/* _content/Demo/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* تصميم القائمة */
+.transparent-navbar[b-xwylo3ageb] {
+    background-color: rgba(255, 255, 255, 0.2); /* شفافية عالية */
+    backdrop-filter: blur(5px); /* تمويه خفيف */
+    transition: background-color 0.3s ease, top 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
+    padding: 10px 0;
+}
+
+    /* عند التمرير */
+    .transparent-navbar.scrolled[b-xwylo3ageb] {
+        background-color: rgba(255, 255, 255, 0.9); /* شفافية أقل مع ظل */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+/* أزرار القائمة */
+.nav-link[b-xwylo3ageb] {
+    color: #007bff;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+    .nav-link:hover[b-xwylo3ageb] {
+        color: #fff;
+        background-color: #6f42c1; /* بنفسجي */
+        text-decoration: none;
+    }
+
+/* الشعار */
+.navbar-brand[b-xwylo3ageb] {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #007bff;
+    text-transform: uppercase;
+}
+
+/* الحاوية */
+.container[b-xwylo3ageb] {
+    margin-top: 100px;
+}

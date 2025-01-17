@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+@model List<User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            text-align: center;
+            background-color: #004d40;
+            color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+        }
+
+            .login-container h1 {
+                font-size: 2.5rem;
+                margin-bottom: 25px;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #80cbc4;
+            border-radius: 10px;
+            font-size: 1rem;
+            background-color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn-primary:hover {
+                background-color: #004d40;
+            }
+
+        #error-message {
+            color: #ff8a80;
+            display: none;
+            margin-top: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div>
+                <label for="id">User ID</label>
+                <input type="text" id="id" name="id" class="form-control" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <div>
+                <button type="button" class="btn-primary mt-3" id="loginButton">Login</button>
+            </div>
+
+            <div id="error-message">
+                Invalid User ID or Password!
+            </div>
+        </form>
+    </div>
+    <script>
+        // تحويل قائمة المستخدمين من الـ Model إلى JavaScript
+        const users = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model))
+
+        document.getElementById("loginButton").addEventListener("click", function () {
+            const id = Number(document.getElementById("id").value.trim());
+            const password = document.getElementById("password").value.trim();
+            console.log(typeof(id));
+            // البحث عن المستخدم المناسب من القائمة
+            const user = users.find(user => user.id === id && user.password === password);
+
+            if (user && user.link) {
+                // التوجيه إلى الرابط الخاص بالمستخدم
+                window.location.href = user.link;
+            } else {
+                // عرض رسالة خطأ
+                const errorMessage = document.getElementById("error-message");
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
